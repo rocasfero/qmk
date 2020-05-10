@@ -45,12 +45,14 @@ enum custom_keycodes {
 #define RC_CSPC CTL_T(KC_SPC)
 
 #define RC_CENT CTL_T(KC_ENT)
+#define RC_SENT SFT_T(KC_ENT)
 #define RC_GMIN GUI_T(KC_MINS)
 #define RC_CEQL CTL_T(KC_EQL)
 #define RC_AQOT ALT_T(KC_QUOT)
 #define RC_SBSP SFT_T(KC_BSPC)
 
 #define RC_GTAB LGUI(KC_TAB)
+#define RC_LANG LCTL(KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT( \
@@ -61,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|-------+-------+-------+-------+-------|                  |-------+-------+-------+-------+-------|
         KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                      KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH,\
   //|-------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-------|
-     RC_SESC,KC_LALT,KC_LCTL,KC_LGUI,  LOWER,RC_CSPC,   RC_CENT,  RAISE,RC_GMIN,KC_RCTL,KC_RALT,RC_SBSP \
+     RC_SESC,KC_LALT,KC_LCTL,KC_LGUI,  LOWER,RC_CSPC,   RC_SENT,  RAISE,RC_GMIN,KC_RCTL,KC_RALT,RC_SBSP \
   //|-------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-------|
   ),
 
@@ -81,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------.                  ,---------------------------------------.
         KC_1,   KC_2,   KC_3,   KC_4,   KC_5,                      KC_6,   KC_7,   KC_8,   KC_9,   KC_0,\
   //|-------+-------+-------+-------+-------|                  |-------+-------+-------+-------+-------|
-     XXXXXXX,KC_HOME,KC_PGUP,KC_PGDN, KC_END,                   KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,XXXXXXX,\
+     XXXXXXX,KC_HOME,KC_PGUP,KC_PGDN, KC_END,                   KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,RC_LANG,\
   //|-------+-------+-------+-------+-------|                  |-------+-------+-------+-------+-------|
      XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                   XXXXXXX,MAC_VDN,MAC_VUP,XXXXXXX,XXXXXXX,\
   //|-------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-------|
