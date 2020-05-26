@@ -30,7 +30,6 @@ enum custom_keycodes {
   ADJUST,
 };
 
-#define MAC_VMT KC__MUTE
 #define MAC_VDN KC__VOLDOWN
 #define MAC_VUP KC__VOLUP
 
@@ -40,11 +39,13 @@ enum custom_keycodes {
 #define RC_GGRV CMD_T(KC_GRV)
 #define RC_CSPC CTL_T(KC_SPC)
 
-#define RC_CENT CTL_T(KC_ENT)`
+#define RC_CENT CTL_T(KC_ENT)
 #define RC_GMIN GUI_T(KC_MINS)
 #define RC_CEQL CTL_T(KC_EQL)
 #define RC_AQOT ALT_T(KC_QUOT)
 #define RC_SBSP SFT_T(KC_BSPC)
+
+#define RC_LANG LCTL(KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -67,11 +68,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //,-----------------------------------------------.                 ,-----------------------------------------------.
    _______,KC_EXLM,  KC_AT,KC_HASH, KC_DLR,KC_PERC,                  KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______, KC_TAB,KC_MINS, KC_EQL,KC_BSLS, KC_GRV,                  KC_SCLN,KC_QUOT,  KC_LT,KC_LCBR,KC_RCBR,_______,\
+   _______, KC_TAB,KC_BSLS,KC_PIPE,KC_TILD, KC_GRV,                   KC_EQL,KC_QUOT,KC_DQUO,KC_LCBR,KC_RCBR,_______,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______, KC_ESC,KC_UNDS,KC_PLUS,KC_PIPE,KC_TILD,                  KC_COLN,KC_DQUO,  KC_GT,KC_LBRC,KC_RBRC,_______,\
+   _______,RC_LANG,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  KC_PLUS,  KC_LT,  KC_GT,KC_LBRC,KC_RBRC,_______,\
 //|-------+-------+-------+-------+-------+-------|-------| |-------+-------+-------+-------+-------+-------+-------|
-   _______, KC_ESC,KC_UNDS,KC_PLUS,KC_PIPE,KC_TILD,_______,  _______,KC_COLN,KC_DQUO,  KC_GT,KC_LBRC,KC_RBRC,_______,\
+   _______,_______,_______,_______,_______,_______,_______,  _______,_______,_______,_______,_______,_______,_______,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
                            _______,_______,_______,_______,  _______,_______,_______, KC_DEL \
 //                        |-------+-------+-------+-------| |-------+-------+-------+-------|
@@ -81,11 +82,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //,-----------------------------------------------.                 ,-----------------------------------------------.
    _______,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,                     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,_______,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,XXXXXXX,_______,\
+   _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,MAC_VUP,_______,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,\
+   _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  KC_HOME,KC_PGDN,KC_PGUP, KC_END,MAC_VDN,_______,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
-   _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,  _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,_______,\
+   _______,_______,_______,_______,_______,_______,_______,  _______,_______,_______,_______,_______,_______,_______,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
                            _______,_______,_______,_______,  _______,_______,_______,_______ \
 //                        |-------+-------+-------+-------| |-------+-------+-------+-------|
@@ -95,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //,-----------------------------------------------.                 ,-----------------------------------------------.
    XXXXXXX,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,                    KC_F6,  KC_F7,  KC_F8,  KC_F9, KC_F10,XXXXXXX,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   XXXXXXX, KC_F11, KC_F12,XXXXXXX,  RESET,XXXXXXX,                  XXXXXXX,MAC_VDN,MAC_VUP,XXXXXXX,XXXXXXX,XXXXXXX,\
+   XXXXXXX, KC_F11, KC_F12,KC_PSCR,  RESET, KC_INS,                  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
    XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
