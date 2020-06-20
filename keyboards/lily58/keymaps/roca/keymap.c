@@ -1,5 +1,5 @@
 #include QMK_KEYBOARD_H
-#include "lily58.h"
+
 #ifdef PROTOCOL_LUFA
   #include "lufa.h"
   #include "split_util.h"
@@ -7,9 +7,6 @@
 #ifdef SSD1306OLED
   #include "ssd1306.h"
 #endif
-
-
-extern keymap_config_t keymap_config;
 
 #ifdef RGBLIGHT_ENABLE
 //Following line allows macro to read current RGB settings
@@ -30,63 +27,55 @@ enum custom_keycodes {
   ADJUST,
 };
 
-#define MAC_VDN KC__VOLDOWN
-#define MAC_VUP KC__VOLUP
-
-#define RC_SFES SFT_T(KC_ESC)
-#define RC_ATAB ALT_T(KC_TAB)
-#define RC_CBSL CTL_T(KC_BSLS)
-#define RC_GGRV CMD_T(KC_GRV)
-#define RC_CSPC CTL_T(KC_SPC)
-
-#define RC_CENT CTL_T(KC_ENT)
-#define RC_GMIN GUI_T(KC_MINS)
+#define MAC_VOD KC__VOLDOWN
+#define MAC_VOU KC__VOLUP
 #define RC_CEQL CTL_T(KC_EQL)
-#define RC_AQOT ALT_T(KC_QUOT)
+#define RC_CMIN CTL_T(KC_MINS)
+#define RC_SENT SFT_T(KC_ENT)
+#define RC_CSPC CTL_T(KC_SPC)
 #define RC_SBSP SFT_T(KC_BSPC)
-
+#define RC_SESC SFT_T(KC_ESC)
 #define RC_LANG LCTL(KC_SPC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-/* QWERTY */
 [_QWERTY] = LAYOUT( \
 //,-----------------------------------------------.                 ,-----------------------------------------------.
-   _______,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,_______,\
+    KC_ESC,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,                     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,KC_BSPC,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                     KC_H,   KC_J,   KC_K,   KC_L,KC_SCLN,_______,\
+    KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,KC_MINS,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,                     KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH,_______,\
+   KC_LGUI,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                     KC_H,   KC_J,   KC_K,   KC_L,KC_SCLN,KC_QUOT,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
-   RC_SFES,RC_SFES,RC_ATAB,RC_CBSL,RC_GGRV,  LOWER,RC_CSPC,  RC_CENT,  RAISE,RC_GMIN,RC_CEQL,RC_AQOT,RC_SBSP,RC_SBSP,\
+   RC_SESC,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,KC_LBRC,  KC_RBRC,   KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH,RC_SBSP,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
-                           RC_CBSL,RC_GGRV,  LOWER,RC_CSPC,  RC_CENT,  RAISE,RC_GMIN,RC_CEQL \
+                           KC_LALT,RC_CEQL,  LOWER,RC_CSPC,  RC_SENT,  RAISE,RC_CMIN,KC_RALT \
 //                        |-------+-------+-------+-------| |-------+-------+-------+-------|
 ),
 /* LOWER */
 [_LOWER] = LAYOUT( \
 //,-----------------------------------------------.                 ,-----------------------------------------------.
-   _______,KC_EXLM,  KC_AT,KC_HASH, KC_DLR,KC_PERC,                  KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,_______,\
+   _______,_______,_______,_______,_______,_______,                  _______,_______,_______,_______,_______,_______,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______, KC_TAB,KC_BSLS,KC_PIPE,KC_TILD, KC_GRV,                   KC_EQL,KC_QUOT,KC_DQUO,KC_LCBR,KC_RCBR,_______,\
+   _______,KC_EXLM,KC_AT,  KC_HASH,KC_DLR, KC_PERC,                  KC_CIRC,KC_AMPR,KC_ASTR,KC_LPRN,KC_RPRN,KC_UNDS,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______,RC_LANG,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  KC_PLUS,  KC_LT,  KC_GT,KC_LBRC,KC_RBRC,_______,\
-//|-------+-------+-------+-------+-------+-------|-------| |-------+-------+-------+-------+-------+-------+-------|
-   _______,_______,_______,_______,_______,_______,_______,  _______,_______,_______,_______,_______,_______,_______,\
+   _______, KC_TAB,KC_BSLS,KC_PIPE,KC_TILD, KC_GRV,                   KC_EQL,KC_QUOT,KC_DQUO,KC_LCBR,KC_RCBR,KC_PIPE,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
-                           _______,_______,_______,_______,  _______,_______,_______, KC_DEL \
+   _______,RC_LANG,_______,_______,_______,_______,_______,  _______,KC_PLUS,  KC_LT,  KC_GT,KC_LBRC,KC_RBRC,_______,\
+//|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
+                           _______,_______,_______,_______,  _______,_______,_______,_______ \
 //                        |-------+-------+-------+-------| |-------+-------+-------+-------|
 ),
 /* RAISE */
 [_RAISE] = LAYOUT( \
 //,-----------------------------------------------.                 ,-----------------------------------------------.
+   _______,_______,_______,_______,_______,_______,                  _______,_______,_______,_______,_______, KC_DEL,\
+//|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
    _______,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,                     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,_______,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,MAC_VUP,_______,\
-//|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   _______,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  KC_HOME,KC_PGDN,KC_PGUP, KC_END,MAC_VDN,_______,\
+   _______,_______,_______,_______,_______,_______,                  KC_LEFT,KC_DOWN,  KC_UP,KC_RGHT,MAC_VOU,_______,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
-   _______,_______,_______,_______,_______,_______,_______,  _______,_______,_______,_______,_______,_______,_______,\
+   _______,_______,_______,_______,_______,_______,_______,  _______,KC_HOME,KC_PGDN,KC_PGUP, KC_END,MAC_VOD,_______,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
                            _______,_______,_______,_______,  _______,_______,_______,_______ \
 //                        |-------+-------+-------+-------| |-------+-------+-------+-------|
@@ -94,13 +83,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* ADJUST */
 [_ADJUST] = LAYOUT( \
 //,-----------------------------------------------.                 ,-----------------------------------------------.
+     KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,  KC_F6,                    KC_F7,  KC_F8,  KC_F9, KC_F10, KC_F11, KC_F12,\
+//|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
    XXXXXXX,  KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,                    KC_F6,  KC_F7,  KC_F8,  KC_F9, KC_F10,XXXXXXX,\
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
    XXXXXXX, KC_F11, KC_F12,KC_PSCR,  RESET, KC_INS,                  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
-//|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
-   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
-   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, KC_DEL,XXXXXXX,\
+   XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,  XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX, KC_DEL,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
                            _______,_______,_______,_______,  _______,_______,_______,_______ \
   //                      |-------+-------+-------+-------| |-------+-------+-------+-------|
@@ -123,16 +112,18 @@ void matrix_init_user(void) {
     #ifdef RGBLIGHT_ENABLE
       RGB_current_mode = rgblight_config.mode;
     #endif
-    //SSD1306 OLED init, make sure to add #define SSD1306OLED in config.h
-    #ifdef SSD1306OLED
-        iota_gfx_init(!has_usb());   // turns on the display
-    #endif
 }
 
-//SSD1306 OLED update loop, make sure to add #define SSD1306OLED in config.h
-#ifdef SSD1306OLED
+//SSD1306 OLED update loop, make sure to enable OLED_DRIVER_ENABLE=yes in rules.mk
+#ifdef OLED_DRIVER_ENABLE
 
-// When add source files to SRC in rules.mk, you can use functions.
+oled_rotation_t oled_init_user(oled_rotation_t rotation) {
+  if (!is_keyboard_master())
+    return OLED_ROTATION_180;  // flips the display 180 degrees if offhand
+  return rotation;
+}
+
+// When you add source files to SRC in rules.mk, you can use functions.
 const char *read_layer_state(void);
 const char *read_logo(void);
 void set_keylog(uint16_t keycode, keyrecord_t *record);
@@ -144,42 +135,24 @@ const char *read_keylogs(void);
 // void set_timelog(void);
 // const char *read_timelog(void);
 
-void matrix_scan_user(void) {
-   iota_gfx_task();
-}
-
-void matrix_render_user(struct CharacterMatrix *matrix) {
-  if (is_master) {
+void oled_task_user(void) {
+  if (is_keyboard_master()) {
     // If you want to change the display of OLED, you need to change here
-    matrix_write_ln(matrix, read_layer_state());
-    matrix_write_ln(matrix, read_keylog());
-    matrix_write_ln(matrix, read_keylogs());
-    //matrix_write_ln(matrix, read_mode_icon(keymap_config.swap_lalt_lgui));
-    //matrix_write_ln(matrix, read_host_led_state());
-    //matrix_write_ln(matrix, read_timelog());
+    oled_write_ln(read_layer_state(), false);
+    oled_write_ln(read_keylog(), false);
+    oled_write_ln(read_keylogs(), false);
+    //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
+    //oled_write_ln(read_host_led_state(), false);
+    //oled_write_ln(read_timelog(), false);
   } else {
-    matrix_write(matrix, read_logo());
+    oled_write(read_logo(), false);
   }
 }
-
-void matrix_update(struct CharacterMatrix *dest, const struct CharacterMatrix *source) {
-  if (memcmp(dest->display, source->display, sizeof(dest->display))) {
-    memcpy(dest->display, source->display, sizeof(dest->display));
-    dest->dirty = true;
-  }
-}
-
-void iota_gfx_task_user(void) {
-  struct CharacterMatrix matrix;
-  matrix_clear(&matrix);
-  matrix_render_user(&matrix);
-  matrix_update(&display, &matrix);
-}
-#endif//SSD1306OLED
+#endif // OLED_DRIVER_ENABLE
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
-#ifdef SSD1306OLED
+#ifdef OLED_DRIVER_ENABLE
     set_keylog(keycode, record);
 #endif
     // set_timelog();
