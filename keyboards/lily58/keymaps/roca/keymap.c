@@ -24,23 +24,34 @@ enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
-  ADJUST,
+  ADJUST
 };
 
 #define MAC_VOD KC__VOLDOWN
 #define MAC_VOU KC__VOLUP
-#define RC_CEQL CTL_T(KC_EQL)
-#define RC_CMIN CTL_T(KC_MINS)
-#define RC_SENT SFT_T(KC_ENT)
-#define RC_CSPC CTL_T(KC_SPC)
-#define RC_SBSP SFT_T(KC_BSPC)
-#define RC_SESC SFT_T(KC_ESC)
+#define RC_CEQL LCTL_T(KC_EQL)
+#define RC_CMIN RCTL_T(KC_MINS)
+
+#define RC_CSPC LCTL_T(KC_SPC)
+#define RC_SENT RSFT_T(KC_ENT)
+
+#define RC_SESC LSFT_T(KC_ESC)
+#define RC_SBSP RSFT_T(KC_BSPC)
+
 #define RC_LANG LCTL(KC_SPC)
-#define RC_GLBR GUI_T(KC_LBRC)
-#define RC_GRBR GUI_T(KC_RBRC)
+
+#define RC_GLBR LGUI_T(KC_LBRC)
+#define RC_GRBR RGUI_T(KC_RBRC)
+
+#define RC_GEQL LGUI_T(KC_EQL)
+#define RC_GMIN RGUI_T(KC_MINS)
+
+#define RC_CLBR LCTL_T(KC_LBRC)
+#define RC_CRBR RCTL_T(KC_RBRC)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
+/*
 [_QWERTY] = LAYOUT( \
 //,-----------------------------------------------.                 ,-----------------------------------------------.
     KC_ESC,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,                     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,KC_BSPC,\
@@ -49,9 +60,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
   KC_LCTRL,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                     KC_H,   KC_J,   KC_K,   KC_L,KC_SCLN,KC_QUOT,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
-   RC_SESC,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,RC_GLBR,  RC_GRBR,   KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH,RC_SBSP,\
+   RC_SESC,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,RC_CLBR,  RC_CRBR,   KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH,RC_SBSP,\
 //|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
                            KC_LALT,RC_CEQL,  LOWER,RC_CSPC,  RC_SENT,  RAISE,RC_CMIN,KC_RALT \
+//                        |-------+-------+-------+-------| |-------+-------+-------+-------|
+),*/
+/* MAXOS */
+[_QWERTY] = LAYOUT( \
+//,-----------------------------------------------.                 ,-----------------------------------------------.
+    KC_ESC,   KC_1,   KC_2,   KC_3,   KC_4,   KC_5,                     KC_6,   KC_7,   KC_8,   KC_9,   KC_0,KC_BSPC,\
+//|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
+    KC_TAB,   KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,                     KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,KC_MINS,\
+//|-------+-------+-------+-------+-------+-------|                 |-------+-------+-------+-------+-------+-------|
+  KC_LCTRL,   KC_A,   KC_S,   KC_D,   KC_F,   KC_G,                     KC_H,   KC_J,   KC_K,   KC_L,KC_SCLN,KC_QUOT,\
+//|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
+   RC_SESC,   KC_Z,   KC_X,   KC_C,   KC_V,   KC_B,RC_CLBR,  RC_CRBR,   KC_N,   KC_M,KC_COMM, KC_DOT,KC_SLSH,RC_SBSP,\
+//|-------+-------+-------+-------+-------+-------+-------| |-------+-------+-------+-------+-------+-------+-------|
+                           KC_LALT,RC_GEQL,  LOWER,RC_CSPC,  RC_SENT,  RAISE,RC_GMIN,KC_RALT \
 //                        |-------+-------+-------+-------| |-------+-------+-------+-------|
 ),
 /* LOWER */
