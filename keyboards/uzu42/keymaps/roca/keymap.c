@@ -88,9 +88,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,---------------------------------------.                  ,---------------------------------------.
        KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_F5,                     KC_F6,  KC_F7,  KC_F8,  KC_F9, KC_F10,\
   //|-------+-------+-------+-------+-------|                  |-------+-------+-------+-------+-------|
-      KC_F11, KC_F12,KC_PSCR,  RESET, KC_INS,                   RGB_TOG,RGB_HUI,RGB_SAI,RGB_VAI,XXXXXXX,\
+      KC_F11, KC_F12, KC_F13, KC_F14, KC_F15,                   RGB_TOG,RGB_HUI,RGB_SAI,RGB_VAI,XXXXXXX,\
   //|-------+-------+-------+-------+-------|                  |-------+-------+-------+-------+-------|
-     XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,XXXXXXX,                   RGB_MOD,RGB_HUD,RGB_SAD,RGB_VAD, RGBRST,\
+     XXXXXXX,XXXXXXX,KC_PSCR,  RESET, KC_INS,                   RGB_MOD,RGB_HUD,RGB_SAD,RGB_VAD, RGBRST,\
   //|-------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-------|
      _______,_______,_______,_______,_______,_______,   _______,_______,_______,_______,_______, KC_DEL \
   //|-------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-------|
